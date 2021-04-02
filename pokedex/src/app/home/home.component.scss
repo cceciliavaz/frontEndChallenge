@@ -1,0 +1,12 @@
+$main-image: './../../assets/img/bg2.gif' ;
+
+.logo{
+width: 30%;
+margin-top: 20%;
+}
+
+.bg-home{
+    background-image: url($main-image);
+    height: 90vh;      
+    color: white;
+}
