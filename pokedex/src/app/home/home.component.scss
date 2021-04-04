@@ -1,12 +1,12 @@
-$main-image: './../../assets/img/bg2.gif' ;
-
+$main-image: './../../assets/img/bg2.png' ;
+$color-primary: #0071bc;
 .logo{
 width: 30%;
-margin-top: 20%;
 }
 
 .bg-home{
-    background-image: url($main-image);
-    height: 90vh;      
+    // background-image: url($main-image);
+    background-color: $color-primary;
+    height: 40vh;      
     color: white;
 }

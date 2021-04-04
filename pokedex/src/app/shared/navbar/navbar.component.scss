@@ -1,9 +1,11 @@
+$primary: #0071bc;
+
 .logo{
     width: 3%;
 }
 
 .bg{
-    background-color: #101010 !important;
+    background-color: $primary !important;
 }
 
 .white{
@@ -11,5 +13,5 @@
 }
 
 .primary{
-    color: #0976be;
+    color: $primary;
 }

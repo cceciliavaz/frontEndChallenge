@@ -9,7 +9,10 @@ import { HomeComponent } from './home/home.component';
 import { PokedexComponent } from './sessoes/pokedex/pokedex.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DataTablesModule } from 'angular-datatables';
-import { AngularMaterialModule } from './angular-material.module';
+
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -17,14 +20,17 @@ import { AngularMaterialModule } from './angular-material.module';
     NavbarComponent,
     FooterComponent,
     HomeComponent,
-    AngularMaterialModule,
     PokedexComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,    
     HttpClientModule,
-    DataTablesModule
+    DataTablesModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
+
   ],
   providers: [],
   bootstrap: [AppComponent],

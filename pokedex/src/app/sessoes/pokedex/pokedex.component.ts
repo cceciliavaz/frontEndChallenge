@@ -1,63 +1,68 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import * as $ from "jquery";
-import { MatTableModule } from '@angular/material/table';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import * as $ from 'jquery';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { ArrayDataSource } from '@angular/cdk/collections';
+
+// import { MatPaginator, MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-pokedex',
   templateUrl: './pokedex.component.html',
-  styleUrls: ['./pokedex.component.scss']
+  styleUrls: ['./pokedex.component.scss'],
 })
-
 export class PokedexComponent implements OnInit {
   apiURL: any;
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
-  listaPokemon: any = [];
-  constructor(
-    private http: HttpClient) {
-    
-    this.apiURL = " https://api.pokemontcg.io/v2/";
-   }
+  displayedColumns = ['name'];
+  listAllPokemon: any = [];
+  listFilterPokemon: any = [];
+
+  loadPokemons: any;
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator;
+
+  dataSource: any;
+  erroLoad: any;
+
+  constructor(private http: HttpClient) {
+    this.apiURL = ' https://api.pokemontcg.io/v2/';
+  }
 
   ngOnInit() {
+    this.loadPokemons = true;
+    this.erroLoad = false;
     this.getPokemons();
+  }
+
+  searchPokemon(palavra: any) {
+    palavra = palavra.target.value || null;
+    if (palavra)
+      this.listFilterPokemon = this.listAllPokemon.data.filter((pokemon: any) =>
+        pokemon.name.toLocaleLowerCase().includes(palavra.toLocaleLowerCase())
+      );
+    else this.listFilterPokemon = this.listAllPokemon.data;
   }
 
   getPokemons() {
     this.http.get(`${this.apiURL}/cards`).subscribe(
       (dados) => {
-        this.listaPokemon = dados;
-        this.listaPokemon = this.listaPokemon.data
-        console.log(this.listaPokemon)
+        this.listAllPokemon = dados;
+        this.listFilterPokemon = this.listAllPokemon.data.sort(
+          (a: any, b: any) => {
+            if (a.name < b.name) return -1;
+            if (a.name > b.name) return 1;
+            return 0;
+          }
+        );
+        this.loadPokemons = false;
       },
       (erro) => {
-        if (erro.status == 404) {
-          console.log("Informação não localizada.");
-        }
+        setTimeout(() => {
+          this.loadPokemons = false;
+          this.erroLoad = true;
+        }, 100);
       }
     );
   }
-
-  
 }
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-  { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-  { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-  { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-  { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-  { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-];
