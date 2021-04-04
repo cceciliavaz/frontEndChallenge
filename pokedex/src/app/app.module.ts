@@ -8,11 +8,6 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { PokedexComponent } from './sessoes/pokedex/pokedex.component';
 import { HttpClientModule } from '@angular/common/http';
-import { DataTablesModule } from 'angular-datatables';
-
-import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -25,11 +20,7 @@ import { MatSortModule } from '@angular/material/sort';
   imports: [
     BrowserModule,
     AppRoutingModule,    
-    HttpClientModule,
-    DataTablesModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule
+    HttpClientModule
 
   ],
   providers: [],

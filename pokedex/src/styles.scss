@@ -7,3 +7,70 @@ body{
 table {
     width: 100%;
   }
+
+  $primary: #0071bc;
+$secundary: #565656;
+$tertiary:  #ef4036;
+$warning: #ffc107;
+$green: green;
+$black: black;
+$white: white;
+
+.bx-s:hover {
+background-color: #ebebeb;
+width: 102%;
+  -webkit-box-shadow: 0px 0px 8px 2px #c7c7c7;
+  -moz-box-shadow: 0px 0px 8px 2px #c7c7c7;
+  box-shadow: 0px 0px 8px 2px #c7c7c7;
+  cursor: pointer;
+  transform: matrix(1, 0, 0, 1, 0, 0);
+}
+
+.form-control:focus {
+    border-color: #35749eb3 !important;
+    box-shadow: 0 0 0 0.2rem rgb(0 113 188 / 16%)  !important;
+}
+
+.title {
+  color: $primary;
+}
+
+.subtitle {
+  color: $secundary;
+  font-size: 2vh;
+}
+
+.subtitle2{
+    color: $tertiary;
+}
+
+.card-alert {
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 15px;
+  background-color: $secundary;
+  color: $white;
+}
+.Grass {
+  background-color: $green;
+  color: $white;
+}
+
+.Lightning {
+  background-color: $warning;
+  color: $black;
+}
+.Fire,
+.Fighting {
+  background-color: $tertiary;
+  color: $white;
+}
+.Water {
+  background-color: $primary;
+  color: $white;
+}
+
+.Darkness {
+  background-color: $black;
+  color: $white;
+}

@@ -15,3 +15,10 @@ $primary: #0071bc;
 .primary{
     color: $primary;
 }
+
+@media only screen and (max-width: 768px) {
+    .logo{
+        display: none;
+    }
+  }
+  
